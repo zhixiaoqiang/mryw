@@ -8,6 +8,6 @@ function get (name) {
 }
 
 export default {
-  set,
-  get
+	set: set,
+	get: get
 }

@@ -24,6 +24,8 @@
 @media screen and (min-width: 390px) {
   .content{
     margin-top: .6rem;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
   }
 }
 .content_c{

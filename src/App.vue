@@ -47,8 +47,10 @@ export default {
   name: 'app',
   created () {
     rem.defaultFontSize
-    if (storage.get('articles').length > 0) {
-      this.saveTotal = storage.get('articles')
+    if (storage.get('articles')) {
+      if (storage.get('articles').length > 0) {
+        this.saveTotal = storage.get('articles')
+      }
     }
     this.wWidth = window.innerWidth
   },
@@ -84,10 +86,15 @@ export default {
       this.touchPoint.startX = point
     },
     tm (e) {
+      // e.preventDefault()
       var point = e.targetTouches[0]
       this.touchPoint.stopX = point.clientX
+      if (this.leftmenu || this.rightmenu) {
+        e.preventDefault()
+      }
     },
     te (e) {
+      // e.preventDefault()
       var distand = this.touchPoint.stopX - this.touchPoint.startX
       if (distand > 20 && !this.leftmenu) {
         if (this.touchPoint.startX <= this.wWidth / 4 && !this.rightmenu) {
@@ -110,8 +117,11 @@ export default {
       this.leftmenu = !this.leftmenu
       if (this.leftmenu) {
         document.body.style.overflow = 'hidden'
+        // document.body.addEventListener('touchmove', function (event) { event.preventDefault() }, false)
       } else {
-        document.body.style.overflow = 'auto'
+        setTimeout(() => {
+          document.body.style.overflow = 'auto'
+        }, 300)
       }
     },
     rightMenus () {
@@ -136,13 +146,15 @@ export default {
     hideRight () {
       this.rightmenu = false
     },
+    // 可否滑动
   // 获取文章
     getArticle () {
       this.rightmenu = false
       this.$ajax({
         methods: 'get',
-        baseURL: '/article',
-        url: 'today',
+        // baseURL: '/article',
+        // url: 'today',
+        url: 'https://interface.meiriyiwen.com/article/today',
         params: {
           dev: 1
         }
@@ -161,8 +173,9 @@ export default {
       this.showS = false
       this.$ajax({
         methods: 'get',
-        baseURL: '/article',
-        url: 'day',
+        // baseURL: '/article',
+        // url: 'day',
+        url: 'https://interface.meiriyiwen.com/article/day',
         params: {
           dev: 1,
           date: data
@@ -176,8 +189,9 @@ export default {
       this.rightmenu = false
       this.$ajax({
         methods: 'get',
-        baseURL: '/article',
-        url: 'random',
+        // baseURL: '/article',
+        // url: random',
+        url: 'https://interface.meiriyiwen.com/article/random',
         params: {
           dev: 1
         }
@@ -248,6 +262,8 @@ export default {
   *{
     margin: 0;
     padding: 0;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-appearance: none;
   }
   body{
     font-size: .35rem;
