@@ -6,7 +6,7 @@
 > vue2+vue-router+axios+vuex+webpack
 +ES6/ES7+babel+vue-loader+nodejs+npm+flex
 
-[百度一下](www.baidu.com)
+[百度一下](http://www.baidu.com)
 ## Build Setup
 
 ``` bash
