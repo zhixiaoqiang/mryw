@@ -84,7 +84,7 @@ export default {
     }
   },
   beforeUpdate () {
-    this.now = this.article.date.curr
+    this.now = this.article.date.curr || new Date().Format('yyyyMMdd')
   },
   computed: {
     isToday () {

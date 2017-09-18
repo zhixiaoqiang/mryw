@@ -33,6 +33,16 @@
     <transition name="sc">
       <span class="SC" v-if="isSC">{{ issc ? '收藏成功' : '取消收藏' }}</span>
     </transition>
+    <!-- <h1>
+      {{ this.$store.state.aa }}
+      {{ aa }}
+      {{ this.$store.getters.toUp }}
+      {{ toUp }}
+    </h1>
+    <button @click="ttt('xx')">切换Save</button>
+    <h1>
+      {{ articleSave }}
+    </h1> -->
   </div>
 </template>
 
@@ -43,6 +53,8 @@ import leftMenu from '~/leftMenu'
 import rightMenu from '~/rightMenu'
 import setting from '~/setting'
 import saveArticle from '~/saveArticle'
+// vuex
+import { mapState, mapGetters } from 'vuex'
 export default {
   name: 'app',
   created () {
@@ -53,6 +65,16 @@ export default {
       }
     }
     this.wWidth = window.innerWidth
+    // this.$ajax({
+    //   methods: 'get',
+    //   baseURL: '/api',
+    //   url: 'album',
+    //   responseType: 'json'
+    // }).then((res) => {
+    //   console.log(res)
+    // }).catch((err) => {
+    //   console.log(err)
+    // })
   },
   mounted () {
     this.getArticle()
@@ -80,6 +102,13 @@ export default {
     saveArticle
   },
   methods: {
+    ttt (xx) {
+      this.$store.commit({
+        type: 'changeSave',
+        xx: xx
+      })
+      this.$store.dispatch('changeSave')
+    },
   // 手指滑动
     ts (e) {
       var point = e.targetTouches[0].clientX
@@ -115,9 +144,9 @@ export default {
   // 左右菜单栏
     leftMenus () {
       this.leftmenu = !this.leftmenu
+      this.setting = false
       if (this.leftmenu) {
         document.body.style.overflow = 'hidden'
-        // document.body.addEventListener('touchmove', function (event) { event.preventDefault() }, false)
       } else {
         setTimeout(() => {
           document.body.style.overflow = 'auto'
@@ -126,6 +155,7 @@ export default {
     },
     rightMenus () {
       this.rightmenu = !this.rightmenu
+      this.setting = false
       document.body.style.overflow = 'hidden'
     },
     hideMenu () {
@@ -249,7 +279,20 @@ export default {
         }
       }
       return false
-    }
+    },
+    // ...mapState([
+    //   'aa',
+    //   'articleSave'
+    // ])
+    // 在计算属性里拿到vuex的state数据
+    ...mapState({
+      // aa: (state) => state.aa
+      aa: 'aa',
+      articleSave: 'articleSave'
+    }),
+    ...mapGetters([
+      'toUp'
+    ])
   }
 }
 </script>
