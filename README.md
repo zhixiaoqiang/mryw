@@ -1,7 +1,13 @@
-# mryw
+# 每日一文
 
-> A Vue.js project
+> 一个使用了vue全家桶的进阶项目,最终打包成原生app
 
+# 技术栈
+> vue2+vue-router+axios+vuex+webpack
++ES6/ES7+babel+vue-loader+nodejs+npm+flex
+
+[百度一下](http://www.qdkj520.com/mryw?_blank)
+<a href="http://www.qdkj520.com/mryw" target="_blank">演示地址</a>
 ## Build Setup
 
 ``` bash
