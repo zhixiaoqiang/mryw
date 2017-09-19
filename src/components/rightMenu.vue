@@ -81,14 +81,17 @@ export default {
   watch: {
     save () {
       this.saved = this.save
+    },
+    article () {
+      this.now = this.article.date.curr
     }
   },
-  beforeUpdate () {
-    this.now = this.article.date.curr || new Date().Format('yyyyMMdd')
-  },
+  // updated () {
+  //   this.now = this.article.date.curr || new Date().Format('yyyyMMdd')
+  // },
   computed: {
     isToday () {
-      console.log()
+      console.log(1)
       return this.now < new Date().Format('yyyyMMdd')
     }
   },
