@@ -1,6 +1,6 @@
 # 每日一文
 
-> 一个使用了vue全家桶的进阶项目,最终打包成原生app
+> 一个使用了vue全家桶的进阶项目,移动端兼容性进行了相关处理，媲美原生app！！！
 
 # 技术栈
 > vue2+vue-router+axios+vuex+webpack
